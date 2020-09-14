@@ -1,0 +1,49 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+main, header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+header {
+    margin-bottom: 25px;
+}
+
+main > div, header > div {
+    display: flex;
+    flex-basis: calc(100% / 3);
+    flex-wrap: wrap;
+}
+
+main > div, header > div {
+    justify-content: center;
+}
+
+main > div:first-of-type, header > div:first-of-type {
+    justify-content: flex-end;
+}
+
+main > div:last-of-type, header > div:last-of-type {
+    justify-content: flex-start;
+}
+
+#ability-scores input, #level {
+    width: 50px;
+    text-align: center;
+}
+
+#ability-scores th:first-child,
+#skill-scores th:first-child,
+#tool-scores th:first-child {
+    text-align: left;
+}
+
+header td:not(:first-child),
+#ability-scores td:not(:first-child),
+#skill-scores td:not(:first-child),
+#tool-scores td:not(:first-child) {
+    text-align: center;
+}

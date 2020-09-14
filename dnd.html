@@ -1,0 +1,533 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>D&D ability planner</title>
+        <link rel="stylesheet" type="text/css" href="dnd.css">
+        </style>
+    </head>
+    <body>
+        <header>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Level:</td>
+                            <td>
+                                <input type="number" id="level" min="1" max="20" step="1" value="1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Proficiency:</td>
+                            <td id="proficiency">2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <table id="passive-proficiencies">
+                    <tbody>
+                        <tr>
+                            <td>Passive perception <small>(wis)</small></td>
+                            <td id="passive-perception">10</td>
+                        </tr>
+                        <tr>
+                            <td>Passive investigation <small>(int)</small></td>
+                            <td id="passive-investigation">10</td>
+                        </tr>
+                        <tr>
+                            <td>Passive insight <small>(wis)</small></td>
+                            <td id="passive-insight">10</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label>
+                                    <input type="checkbox" id="observant"> Observant
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div></div>
+        </header>
+
+        <main>
+            <div>
+                <table id="ability-scores">
+                    <thead>
+                        <tr>
+                            <th>Ability</th>
+                            <th>Dice</th>
+                            <th>Race</th>
+                            <th>Extra</th>
+                            <th>Sum</th>
+                            <th>Modifier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Strength</td>
+                            <td>
+                                <input type="number" id="base-strength" class="base-score" min="3" max="18" step="1" value="10">
+                            </td>
+                            <td>
+                                <input type="number" id="race-strength" class="race-score" min="-2" max="2" step="1" value="0">
+                            </td>
+                            <td>
+                                <input type="number" id="extra-strength" class="extra-score" step="1" value="0">
+                            </td>
+                            <td id="total-strength">10</td>
+                            <td id="modifier-strength">0</td>
+                        </tr>
+                        <tr>
+                            <td>Dexterity</td>
+                            <td>
+                                <input type="number" id="base-dexterity" class="base-score" min="3" max="18" step="1" value="10">
+                            </td>
+                            <td>
+                                <input type="number" id="race-dexterity" class="race-score" min="-2" max="2" step="1" value="0">
+                            </td>
+                            <td>
+                                <input type="number" id="extra-dexterity" class="extra-score" step="1" value="0">
+                            </td>
+                            <td id="total-dexterity">10</td>
+                            <td id="modifier-dexterity">0</td>
+                        </tr>
+                        <tr>
+                            <td>Constitution</td>
+                            <td>
+                                <input type="number" id="base-constitution" class="base-score" min="3" max="18" step="1" value="10">
+                            </td>
+                            <td>
+                                <input type="number" id="race-constitution" class="race-score" min="-2" max="2" step="1" value="0">
+                            </td>
+                            <td>
+                                <input type="number" id="extra-constitution" class="extra-score" step="1" value="0">
+                            </td>
+                            <td id="total-constitution">10</td>
+                            <td id="modifier-constitution">0</td>
+                        </tr>
+                        <tr>
+                            <td>Intelligence</td>
+                            <td>
+                                <input type="number" id="base-intelligence" class="base-score" min="3" max="18" step="1" value="10">
+                            </td>
+                            <td>
+                                <input type="number" id="race-intelligence" class="race-score" min="-2" max="2" step="1" value="0">
+                            </td>
+                            <td>
+                                <input type="number" id="extra-intelligence" class="extra-score" step="1" value="0">
+                            </td>
+                            <td id="total-intelligence">10</td>
+                            <td id="modifier-intelligence">0</td>
+                        </tr>
+                        <tr>
+                            <td>Wisdom</td>
+                            <td>
+                                <input type="number" id="base-wisdom" class="base-score" min="3" max="18" step="1" value="10">
+                            </td>
+                            <td>
+                                <input type="number" id="race-wisdom" class="race-score" min="-2" max="2" step="1" value="0">
+                            </td>
+                            <td>
+                                <input type="number" id="extra-wisdom" class="extra-score" step="1" value="0">
+                            </td>
+                            <td id="total-wisdom">10</td>
+                            <td id="modifier-wisdom">0</td>
+                        </tr>
+                        <tr>
+                            <td>Charisma</td>
+                            <td>
+                                <input type="number" id="base-charisma" min="3" class="base-score" max="18" step="1" value="10">
+                            </td>
+                            <td>
+                                <input type="number" id="race-charisma" class="race-score" min="-2" max="2" step="1" value="0">
+                            </td>
+                            <td>
+                                <input type="number" id="extra-charisma" class="extra-score" step="1" value="0">
+                            </td>
+                            <td id="total-charisma">10</td>
+                            <td id="modifier-charisma">0</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td id="dice-sum">60</td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td id="remainder-72">12</td>
+                            <td colspan="4">remaining if 72 points</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td id="remainder-76">16</td>
+                            <td colspan="4">remaining if 76 points</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td id="remainder-80">20</td>
+                            <td colspan="4">remaining if 80 points</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <table id="skill-scores">
+                    <thead>
+                        <tr>
+                            <th>Skill</th>
+                            <th>Modifier</th>
+                            <th>Score</th>
+                            <th>Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Acrobatics <small>(dex)</small></td>
+                            <td>
+                                <select id="skill-acrobatics">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-acrobatics-score">0</td>
+                            <td id="skill-acrobatics-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Animal handling <small>(wis)</small></td>
+                            <td>
+                                <select id="skill-animal-handling">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-animal-handling-score">0</td>
+                            <td id="skill-animal-handling-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Arcana <small>(int)</small></td>
+                            <td>
+                                <select id="skill-arcana">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-arcana-score">0</td>
+                            <td id="skill-arcana-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Athletics <small>(str)</small></td>
+                            <td>
+                                <select id="skill-athletics">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-athletics-score">0</td>
+                            <td id="skill-athletics-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Deception <small>(cha)</small></td>
+                            <td>
+                                <select id="skill-deception">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-deception-score">0</td>
+                            <td id="skill-deception-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>History <small>(int)</small></td>
+                            <td>
+                                <select id="skill-history">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-history-score">0</td>
+                            <td id="skill-history-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Insight <small>(wis)</small></td>
+                            <td>
+                                <select id="skill-insight">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-insight-score">0</td>
+                            <td id="skill-insight-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Intimidation <small>(cha)</small></td>
+                            <td>
+                                <select id="skill-intimidation">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-intimidation-score">0</td>
+                            <td id="skill-intimidation-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Investigation <small>(int)</small></td>
+                            <td>
+                                <select id="skill-investigation">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-investigation-score">0</td>
+                            <td id="skill-investigation-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Medicine <small>(wis)</small></td>
+                            <td>
+                                <select id="skill-medicine">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-medicine-score">0</td>
+                            <td id="skill-medicine-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Nature <small>(int)</small></td>
+                            <td>
+                                <select id="skill-nature">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-nature-score">0</td>
+                            <td id="skill-nature-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Perception <small>(wis)</small></td>
+                            <td>
+                                <select id="skill-perception">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-perception-score">0</td>
+                            <td id="skill-perception-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Performance <small>(cha)</small></td>
+                            <td>
+                                <select id="skill-performance">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-performance-score">0</td>
+                            <td id="skill-performance-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Persuasion <small>(cha)</small></td>
+                            <td>
+                                <select id="skill-persuasion">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-persuasion-score">0</td>
+                            <td id="skill-persuasion-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Religion <small>(int)</small></td>
+                            <td>
+                                <select id="skill-religion">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-religion-score">0</td>
+                            <td id="skill-religion-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Sleight of hand <small>(dex)</small></td>
+                            <td>
+                                <select id="skill-sleight-of-hand">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-sleight-of-hand-score">0</td>
+                            <td id="skill-sleight-of-hand-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Stealth <small>(dex)</small></td>
+                            <td>
+                                <select id="skill-stealth">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-stealth-score">0</td>
+                            <td id="skill-stealth-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Survival <small>(wis)</small></td>
+                            <td>
+                                <select id="skill-survival">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="skill-survival-score">0</td>
+                            <td id="skill-survival-range">1-20</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <table id="tool-scores">
+                    <thead>
+                        <tr>
+                            <th>Skill</th>
+                            <th>Modifier</th>
+                            <th>Score</th>
+                            <th>Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Artisan's Tools</td>
+                            <td>
+                                <select id="tool-artisans-tools">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="tool-artisans-tools-score">0</td>
+                            <td id="tool-artisans-tools-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Disguise kit</td>
+                            <td>
+                                <select id="tool-disguise-kit">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="tool-disguise-kit-score">0</td>
+                            <td id="tool-disguise-kit-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Forgery kit</td>
+                            <td>
+                                <select id="tool-forgery-kit">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="tool-forgery-kit-score">0</td>
+                            <td id="tool-forgery-kit-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Gaming set</td>
+                            <td>
+                                <select id="tool-gaming-set">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="tool-gaming-set-score">0</td>
+                            <td id="tool-gaming-set-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Herbalism kit</td>
+                            <td>
+                                <select id="tool-herbalism-kit">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="tool-herbalism-kit-score">0</td>
+                            <td id="tool-herbalism-kit-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Musical instrument</td>
+                            <td>
+                                <select id="tool-musical-instrument">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="tool-musical-instrument-score">0</td>
+                            <td id="tool-musical-instrument-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Navigator's tools</td>
+                            <td>
+                                <select id="tool-navigators-tools">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="tool-navigators-tools-score">0</td>
+                            <td id="tool-navigators-tools-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Poisoner's kit</td>
+                            <td>
+                                <select id="tool-poisoners-kit">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="tool-poisoners-kit-score">0</td>
+                            <td id="tool-poisoners-kit-range">1-20</td>
+                        </tr>
+                        <tr>
+                            <td>Thieves' tools</td>
+                            <td>
+                                <select id="tool-thieves-tools">
+                                    <option value="0">None</option>
+                                    <option value="1">Proficient</option>
+                                    <option value="2">Expertise</option>
+                                </select>
+                            </td>
+                            <td id="tool-thieves-tools-score">0</td>
+                            <td id="tool-thieves-tools-range">1-20</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <script src="dnd.js"></script>
+    </body>
+</html>
